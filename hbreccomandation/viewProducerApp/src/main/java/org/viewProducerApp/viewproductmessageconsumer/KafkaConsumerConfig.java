@@ -34,7 +34,7 @@ class KafkaConsumerConfig {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
     		JsonDeserializer.class);
     
-    props.put(JsonDeserializer.TRUSTED_PACKAGES, "com.hb.reccomandation.viewproductmessageproducer");
+    props.put(JsonDeserializer.TRUSTED_PACKAGES, "org.viewProducerApp.viewproductmessageproducer");
     return props;
   }
 
