@@ -19,15 +19,11 @@
 		<version>2.7.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-
-	<groupId>com.hbreccomandation.viewProducer</groupId>
-	<artifactId>viewProducerApp</artifactId>
+	<groupId>com.hbreccomandation.streamReaderApp</groupId>
+	<artifactId>streamReaderApp</artifactId>
 	<packaging>jar</packaging>
 
-	<name>View Producer App</name>
-
-
-
+	<name>Stream Reader App</name>
 
 	<build>
 		<plugins>
@@ -40,7 +36,7 @@
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
-							<finalName>viewProducerApp</finalName>
+							<finalName>streamReaderApp</finalName>
 						</configuration>
 					</execution>
 				</executions>
@@ -49,7 +45,17 @@
 	</build>
 
 	<dependencies>
-		<!-- Apache Kafka dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<!-- <scope>test</scope> -->
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-streams</artifactId>
@@ -73,20 +79,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 	</dependencies>
-
 </project>

@@ -1,11 +1,12 @@
-package org.viewProducerApp.viewproductmessageconsumer;
+package org.streamReaderApp.viewproductmessageconsumer;
+
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import org.viewProducerApp.viewproductmessageproducer.ViewProductMessage;
 
 
 @Component
@@ -15,7 +16,9 @@ class KafkaClassListener {
 
   @KafkaHandler(isDefault = true)
   void listen(ViewProductMessage message) {
-	  logger.info("KafkaHandler[String] {}", message.getMessageid()+" =============================== ");
+	  logger.info("KafkaHandler[String] {}"," =============================== "+ message.getWhen());
+	  logger.info("KafkaHandler[String] {}"," =============================== "+ message.getUserid());
+	  
   }
 
   

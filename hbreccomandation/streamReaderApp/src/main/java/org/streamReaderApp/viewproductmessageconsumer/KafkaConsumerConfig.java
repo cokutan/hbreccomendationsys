@@ -1,4 +1,6 @@
-package org.viewProducerApp.viewproductmessageconsumer;
+package org.streamReaderApp.viewproductmessageconsumer;
+
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,19 +35,19 @@ class KafkaConsumerConfig {
     
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
     		JsonDeserializer.class);
-    
+    props.put(JsonDeserializer.TYPE_MAPPINGS, "viewproductmessage:org.streamReaderApp.viewproductmessageconsumer.ViewProductMessage");
     props.put(JsonDeserializer.TRUSTED_PACKAGES, "org.viewProducerApp.viewproductmessageproducer");
     return props;
   }
 
   @Bean
-  public ConsumerFactory<String, String> consumerFactory() {
+  public ConsumerFactory<String,ViewProductMessage> consumerFactory() {
     return new DefaultKafkaConsumerFactory<>(consumerConfigs());
   }
 
   @Bean
-  public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {
-    ConcurrentKafkaListenerContainerFactory<String, String> factory =
+  public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, ViewProductMessage>> kafkaListenerContainerFactory() {
+    ConcurrentKafkaListenerContainerFactory<String, ViewProductMessage> factory =
       new ConcurrentKafkaListenerContainerFactory<>();
     factory.setConsumerFactory(consumerFactory());
     return factory;

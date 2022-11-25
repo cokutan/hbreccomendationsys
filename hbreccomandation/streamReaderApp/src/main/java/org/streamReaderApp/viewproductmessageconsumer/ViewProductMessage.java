@@ -1,4 +1,5 @@
-package org.viewProducerApp.viewproductmessageproducer;
+package org.streamReaderApp.viewproductmessageconsumer;
+
 
 import java.time.LocalDateTime;
 
@@ -6,12 +7,17 @@ public class ViewProductMessage {
 	String event;
 	String   messageid;
 	String userid;
-	LocalDateTime when=LocalDateTime.now();
+	LocalDateTime when;
+	Properties	 properties;
+	Context context;
 	
 	public ViewProductMessage() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getEvent() {
+		return event;
+	}
 	public LocalDateTime getWhen() {
 		return when;
 	}
@@ -20,9 +26,6 @@ public class ViewProductMessage {
 		this.when = when;
 	}
 
-	public String getEvent() {
-		return event;
-	}
 	public void setEvent(String event) {
 		this.event = event;
 	}
@@ -50,8 +53,8 @@ public class ViewProductMessage {
 	public void setContext(Context context) {
 		this.context = context;
 	}
-	Properties	 properties;
-	Context context;
+	
+	
 		 
 	
 	private class Properties {
