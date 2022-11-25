@@ -14,7 +14,7 @@ public class BrowserHistory {
 	private Long id;
 	private String productid;
 	private String userid;
-	private LocalDateTime when;
+	private LocalDateTime atTime;
 
 	protected BrowserHistory() {
 	}
@@ -22,7 +22,7 @@ public class BrowserHistory {
 	public BrowserHistory(String productid, String userid, LocalDateTime when) {
 		this.productid = productid;
 		this.userid = userid;
-		this.when = when;
+		this.atTime = when;
 	}
 
 	public Long getId() {
@@ -39,11 +39,11 @@ public class BrowserHistory {
 
 	@Override
 	public String toString() {
-		return String.format("Customer[id=%d, firstName='%s', lastName='%s', when='%s']", id, productid, userid, when);
+		return String.format("Customer[id=%d, firstName='%s', lastName='%s', when='%s']", id, productid, userid, atTime);
 	}
 
 	public LocalDateTime getWhen() {
-		return when;
+		return atTime;
 	}
 
 }

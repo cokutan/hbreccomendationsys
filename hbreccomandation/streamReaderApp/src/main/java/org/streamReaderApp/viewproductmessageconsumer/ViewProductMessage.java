@@ -57,7 +57,7 @@ public class ViewProductMessage {
 	
 		 
 	
-	private class Properties {
+	class Properties {
 		private String productid;
 
 		public Properties () {
