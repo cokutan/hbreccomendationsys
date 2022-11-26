@@ -18,7 +18,8 @@
 	<modules>
 	<module>viewProducerApp</module>
 	<module>streamReaderApp</module>
-		
-		
-  </modules>
+
+
+	<module>etlApp</module>
+	</modules>
 </project>
