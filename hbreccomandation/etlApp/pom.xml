@@ -11,6 +11,11 @@
   <packaging>jar</packaging>
   	<name>ETL Process App</name>
   	
+  	<properties>
+		<java.version>11</java.version>
+		<spring-boot.build-image.imageName>$DOCKER_USER_NAME$/${parent.artifactId}-${project.artifactId}</spring-boot.build-image.imageName>
+	</properties>
+  	
   	
   <dependencies>
   <dependency>

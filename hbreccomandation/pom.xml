@@ -21,5 +21,6 @@
 
 
 	<module>etlApp</module>
+	<module>reccomendationengine</module>
 	</modules>
 </project>

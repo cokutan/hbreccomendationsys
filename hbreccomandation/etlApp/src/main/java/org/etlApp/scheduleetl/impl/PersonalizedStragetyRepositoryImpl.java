@@ -31,7 +31,7 @@ public class PersonalizedStragetyRepositoryImpl implements PersonalizedStragetyR
 	
 	@Override
 	@Transactional
-	public void createTableForPersonalizedStrategyRepository() {
+	public void createTableForNonPersonalizedStrategyRepository() {
 		em.createNativeQuery(query).executeUpdate();
 		
 	}

@@ -15,6 +15,6 @@ public class NonPersonalizedStrategyDataFormer {
 	@Scheduled(cron ="@monthly")
 	@PostConstruct
 	void createRepository() {
-		personalizedStragetyRepository.createTableForPersonalizedStrategyRepository();
+		personalizedStragetyRepository.createTableForNonPersonalizedStrategyRepository();
 	}
 }
