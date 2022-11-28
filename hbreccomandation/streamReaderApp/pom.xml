@@ -20,10 +20,15 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hbreccomandation.streamReaderApp</groupId>
-	<artifactId>streamReaderApp</artifactId>
+	<artifactId>stream-reader-app</artifactId>
 	<packaging>jar</packaging>
-
+	<version>0.0.1-SNAPSHOT</version>
 	<name>Stream Reader App</name>
+
+	<properties>
+		<java.version>11</java.version>
+		<spring-boot.build-image.imageName>cokutan/${parent.artifactId}-${project.artifactId}</spring-boot.build-image.imageName>
+	</properties>
 
 	<build>
 		<plugins>

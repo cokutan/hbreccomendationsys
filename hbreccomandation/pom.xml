@@ -13,13 +13,15 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hbreccomandation</name>
 	<description>Demo project for HepsiBurada recomendation</description>
+	<properties>
+		<java.version>11</java.version>
+		<spring-boot.build-image.imageName>cokutan/${parent.artifactId}-${project.artifactId}</spring-boot.build-image.imageName>
+	</properties>
 	
 
 	<modules>
 	<module>viewProducerApp</module>
 	<module>streamReaderApp</module>
-
-
 	<module>etlApp</module>
 	<module>reccomendationengine</module>
 	</modules>

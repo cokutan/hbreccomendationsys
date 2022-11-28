@@ -3,7 +3,6 @@ package reccomendationengine.service;
 import java.util.Collections;
 import java.util.List;
 
-import org.omg.PortableInterceptor.NON_EXISTENT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

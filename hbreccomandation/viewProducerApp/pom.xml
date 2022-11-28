@@ -19,11 +19,15 @@
 		<version>2.7.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+	<properties>
+		<java.version>11</java.version>
+		<spring-boot.build-image.imageName>cokutan/${parent.artifactId}-${project.artifactId}</spring-boot.build-image.imageName>
+	</properties>
 
 	<groupId>com.hbreccomandation.viewProducer</groupId>
-	<artifactId>viewProducerApp</artifactId>
+	<artifactId>view-producer-app</artifactId>
 	<packaging>jar</packaging>
-
+	<version>0.0.1-SNAPSHOT</version>
 	<name>View Producer App</name>
 
 
@@ -72,7 +76,7 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>

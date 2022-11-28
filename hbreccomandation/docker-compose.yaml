@@ -1,0 +1,50 @@
+version: '3.9'
+
+# Define services
+services:
+
+  # Service View Producer 
+  service-view-producer-app:
+    image: cokutan/spring-boot-starter-parent-view-producer-app
+    ports:
+      - "8081:8080"
+    restart: always
+    
+    environment:
+      - "spring.profiles.active=prod"
+   
+  
+    network_mode: "host"
+
+  # Service Stream Reader 
+  service-stream-reader-app:
+    image: cokutan/spring-boot-starter-parent-stream-reader-app
+    ports:
+      - "8082:8080"
+    restart: always
+    environment:
+      - "spring.profiles.active=prod"
+   
+    network_mode: "host"
+   
+  # Service ETL
+  service-etl-app:
+    image: cokutan/spring-boot-starter-parent-etl-app
+    ports:
+      - "8083:8080"
+    restart: always
+    environment:
+      - "spring.profiles.active=prod"
+    
+    network_mode: "host"
+ # Service Reccoemndation Engine
+  service-reccomendation-engine:
+    image: cokutan/spring-boot-starter-parent-reccomendation-engine
+    ports:
+      - "8084:8080"
+    restart: always
+    environment:
+      - "spring.profiles.active=prod"
+   
+    network_mode: "host"
+# Networks to be created to facilitate communication between containers
