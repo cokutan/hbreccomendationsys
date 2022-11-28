@@ -2,6 +2,7 @@ package reccomendationengine.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class EngineController {
 	@Autowired
 	private ReccomendationListService reccomendationListService;
 
-	@RequestMapping(value = "/user-histories/{userId}", method = RequestMethod.GET)
+	@GetMapping(value = "/user-histories/{userId}")
 	public BrowserHistoryDTO listUserHistory(@PathVariable String userId) {
 		return browserHistoryService.retrieveTenLastViews(userId);
 	}
@@ -32,7 +33,7 @@ public class EngineController {
 		browserHistoryService.deleteViews(userId, productId);
 	}
 
-	@RequestMapping(value = "/reccomendations/{userId}", method = RequestMethod.GET)
+	@GetMapping(value = "/reccomendations/{userId}")
 	public BrowserHistoryDTO listReccomendations(@PathVariable String userId) {
 		return reccomendationListService.retrieveRecommendedProductsForUser(userId);
 	}

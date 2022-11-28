@@ -3,6 +3,38 @@ version: '3.9'
 # Define services
 services:
 
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.0.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - kafka-network
+
+  kafka:
+    image: confluentinc/cp-kafka:5.0.0
+    container_name: kafkacase
+    depends_on:
+      - zookeeper
+    networks:
+      - kafka-network
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafkacase:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
+  postgres:
+    image: hepsiburada/postgres:13.1-case
+    container_name: postgresqlcase
+    ports:
+      - "5432:5432"
+    environment:
+      - PGDATA=postgres
+    networks:
+      - postgres-network
+    
   # Service View Producer 
   service-view-producer-app:
     image: cokutan/spring-boot-starter-parent-view-producer-app
@@ -12,9 +44,10 @@ services:
     
     environment:
       - "spring.profiles.active=prod"
-   
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafkacase:9092
+    networks:
+      - kafka-network
   
-    network_mode: "host"
 
   # Service Stream Reader 
   service-stream-reader-app:
@@ -22,29 +55,49 @@ services:
     ports:
       - "8082:8080"
     restart: always
+    depends_on:
+      - postgres
     environment:
       - "spring.profiles.active=prod"
-   
-    network_mode: "host"
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqlcase:5432/data-db
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafkacase:9092
+    networks:
+      - kafka-network
+      - postgres-network
    
   # Service ETL
   service-etl-app:
     image: cokutan/spring-boot-starter-parent-etl-app
     ports:
       - "8083:8080"
+    depends_on:
+      - postgres
     restart: always
     environment:
       - "spring.profiles.active=prod"
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqlcase:5432/data-db
+    networks:
+      - postgres-network
     
-    network_mode: "host"
- # Service Reccoemndation Engine
+ # Service Reccomendation Engine
   service-reccomendation-engine:
     image: cokutan/spring-boot-starter-parent-reccomendation-engine
+    depends_on:
+      - postgres
     ports:
       - "8084:8080"
     restart: always
     environment:
       - "spring.profiles.active=prod"
-   
-    network_mode: "host"
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqlcase:5432/data-db
+        
+    networks:
+      - postgres-network
+    
 # Networks to be created to facilitate communication between containers
+
+networks:
+  kafka-network:
+    name: kafka-network
+  postgres-network:
+    name: postgres-network
